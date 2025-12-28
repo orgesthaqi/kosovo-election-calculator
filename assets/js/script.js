@@ -142,8 +142,8 @@ function displayResults(parties) {
                 </div>
             </div>
 
-            <!-- Results Table -->
-            <div class="overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+            <!-- Desktop Table (hidden on mobile) -->
+            <div class="hidden md:block overflow-hidden rounded-xl border border-gray-200 shadow-sm">
                 <table class="w-full">
                     <thead class="bg-gradient-to-r from-blue-50 to-blue-100">
                         <tr>
@@ -211,6 +211,68 @@ function displayResults(parties) {
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+
+            <!-- Mobile Cards (shown on mobile only) - With column headers -->
+            <div class="md:hidden">
+                <!-- Mobile Table Headers -->
+                <div class="flex items-center justify-between mb-2 px-1">
+                    <div class="text-sm font-semibold text-gray-600">Partia</div>
+                    <div class="text-sm font-semibold text-gray-600">Mandatet</div>
+                </div>
+                
+                <!-- Mobile Cards List -->
+                <div class="space-y-2">
+                    ${allParties.map(p => {
+                        const colorClass = partyColors[p.name] || 'bg-gray-50 border-gray-200';
+                        const thresholdWarning = p.percent !== undefined && p.percent < THRESHOLD ? 
+                            `<div class="text-xs text-red-500 font-medium mt-1">
+                                < ${THRESHOLD}%
+                            </div>` : '';
+                        
+                        return `
+                            <div class="bg-white rounded-xl border border-gray-200 p-3 shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <!-- Party Info -->
+                                    <div class="flex items-center space-x-3">
+                                        <div class="${colorClass} w-9 h-9 rounded-lg border flex items-center justify-center">
+                                            <span class="font-bold text-gray-700 text-xs">${p.name.substring(0, 2)}</span>
+                                        </div>
+                                        <div>
+                                            <span class="font-semibold text-gray-800 text-sm">${p.name}</span>
+                                            ${thresholdWarning}
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Mandatet Badge -->
+                                    <div class="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center min-w-[55px]">
+                                        <span class="text-white font-bold text-base">${p.seats}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('')}
+                    
+                    <!-- Total Card for Mobile -->
+                    <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-xl border border-gray-200 p-3 shadow-sm">
+                        <div class="flex items-center justify-between">
+                            <!-- Party Info -->
+                            <div class="flex items-center space-x-3">
+                                <div class="w-9 h-9 rounded-lg bg-gradient-to-r from-gray-600 to-gray-700 flex items-center justify-center">
+                                    <span class="text-white font-bold text-xs">T</span>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-gray-800 text-sm">TOTAL</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Mandatet Badge -->
+                            <div class="px-4 py-2 rounded-lg bg-gradient-to-r from-gray-700 to-gray-800 flex items-center justify-center min-w-[55px]">
+                                <span class="text-white font-bold text-base">${totalSeats}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Legend -->
