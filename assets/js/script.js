@@ -227,7 +227,7 @@ function displayResults(parties) {
                         const colorClass = partyColors[p.name] || 'bg-gray-50 border-gray-200';
                         const thresholdWarning = p.percent !== undefined && p.percent < THRESHOLD ? 
                             `<div class="text-xs text-red-500 font-medium mt-1">
-                                < ${THRESHOLD}%
+                                Nuk ka kaluar pragun (${THRESHOLD}%)
                             </div>` : '';
                         
                         return `
