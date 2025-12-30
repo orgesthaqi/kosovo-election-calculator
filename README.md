@@ -18,7 +18,7 @@ A web-based calculator for Kosovo parliamentary elections using the D'Hondt meth
 
 ## Live Demo
 
-[View Live Demo on GitHub Pages](https://yourusername.github.io/kosovo-election-calculator/)
+[View Live Demo on GitHub Pages](https://orgesthaqi.github.io/kosovo-election-calculator/)
 
 ## Deployment on GitHub Pages
 
